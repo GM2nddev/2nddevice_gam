@@ -4,6 +4,10 @@ title = "Gitleaks config"
 description = "Global allowlist"
 paths = [
     '''gitleaks.toml''',
+    '''.*\.md$''',
+    '''.*test.*''',
+    '''.*mock.*''',
+    '''.*fixture.*''',
 ]
 
 [[rules]]
@@ -29,3 +33,63 @@ id = "google-service-account"
 description = "Google Service Account Key"
 regex = '''"type"\s*:\s*"service_account"'''
 tags = ["google", "service-account"]
+
+[[rules]]
+id = "aws-access-key"
+description = "AWS Access Key ID"
+regex = '''(?i)AKIA[0-9A-Z]{16}'''
+tags = ["aws", "key"]
+
+[[rules]]
+id = "aws-secret-key"
+description = "AWS Secret Access Key"
+regex = '''(?i)(aws_secret_access_key|aws_secret_key)[\s]*[=:]\s*['"]?([a-zA-Z0-9/+=]{40})['"]?'''
+tags = ["aws", "secret"]
+
+[[rules]]
+id = "github-token"
+description = "GitHub Token"
+regex = '''(ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9_]{36,}'''
+tags = ["github", "token"]
+
+[[rules]]
+id = "slack-token"
+description = "Slack Token"
+regex = '''xox[bporsca]-[0-9a-zA-Z\-]{10,}'''
+tags = ["slack", "token"]
+
+[[rules]]
+id = "slack-webhook"
+description = "Slack Webhook URL"
+regex = '''https://hooks\.slack\.com/services/T[a-zA-Z0-9_]{8,}/B[a-zA-Z0-9_]{8,}/[a-zA-Z0-9_]{24,}'''
+tags = ["slack", "webhook"]
+
+[[rules]]
+id = "database-connection-string"
+description = "Database Connection String with Password"
+regex = '''(?i)(mysql|postgres|postgresql|mongodb|redis|mssql):\/\/[^:]+:[^@]+@.+'''
+tags = ["database", "connection"]
+
+[[rules]]
+id = "jwt-token"
+description = "JSON Web Token"
+regex = '''eyJ[a-zA-Z0-9_-]{10,}\.eyJ[a-zA-Z0-9_-]{10,}\.[a-zA-Z0-9_-]{10,}'''
+tags = ["jwt", "token"]
+
+[[rules]]
+id = "npm-token"
+description = "npm Access Token"
+regex = '''(?i)(npm_[a-zA-Z0-9]{36}|//registry\.npmjs\.org/:_authToken=.+)'''
+tags = ["npm", "token"]
+
+[[rules]]
+id = "pypi-token"
+description = "PyPI API Token"
+regex = '''pypi-[A-Za-z0-9_-]{50,}'''
+tags = ["pypi", "token"]
+
+[[rules]]
+id = "azure-secret"
+description = "Azure Client Secret or Subscription Key"
+regex = '''(?i)(azure[_-]?secret|client[_-]?secret|subscription[_-]?key)[\s]*[=:]\s*['"]?([a-zA-Z0-9_\-\.~]{20,})['"]?'''
+tags = ["azure", "secret"]
