@@ -2,7 +2,7 @@
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability, please report it responsibly by emailing gary.manlegro@learningpool.com.
+If you discover a security vulnerability, please report it responsibly by emailing garboy27@hotmail.com.
 
 Do not open a public issue for security vulnerabilities.
 
